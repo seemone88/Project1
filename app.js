@@ -1,53 +1,24 @@
 var canvas;
 var ctx;
+var ctxx;
 var dx = 5;
 var dy = 5;
 var x = 10;
 var y = 235;
+var o = 30;
+var p = 300;
 var WIDTH = 416;
 var HEIGHT = 481;
 var img = new Image();
 var collision = 0;
 
-var p = 100;
-var o = 20;
-var ctxx;
-function rect1(p,o,w,h) {
+function rect2(o,p,w,h) {
 ctxx.beginPath();
-ctxx.rect(p,o,w,h);
+ctxx.rect(o,p,w,h);
 ctxx.closePath();
 ctxx.fill();
 }
-function clear1() {
-ctxx.clearRect(0, 0, WIDTH, HEIGHT);
-ctxx.drawImage(img, 0, 0);
-}
-function draw1() {
-clear();
-ctxx.fillStyle = "red";
-rect(p, o, 10,10);
-}
-// var maze = document.querySelector('#maze');
-//
-// var imageData = maze.getImageData(0, 0, w, h);
-//
-// // examine every pixel,
-// // change any old rgb to the new-rgb
-// for (var i=0;i<imageData.data.length;i+=4)
-//   {
-//       // is this pixel the old rgb?
-//       if(imageData.data[i]==64 &&
-//          imageData.data[i+1]==63 &&
-//          imageData.data[i+2]==64
-//       ){
-//           // change to your new rgb
-//           imageData.data[i]==0;
-//           imageData.data[i+1]==0;
-//           imageData.data[i+2]==0;
-//       }
-//   }
-// // put the altered data back on the canvas
-// maze.putImageData(imageData,0,0);
+
 
 function rect(x,y,w,h) {
 ctx.beginPath();
@@ -59,6 +30,8 @@ ctx.fill();
 function clear() {
 ctx.clearRect(0, 0, WIDTH, HEIGHT);
 ctx.drawImage(img, 0, 0);
+ctxx.clearRect(0, 0, WIDTH, HEIGHT);
+ctxx.drawImage(img, 0, 0);
 }
 
 function init() {
@@ -138,7 +111,11 @@ function draw() {
 clear();
 ctx.fillStyle = "purple";
 rect(x, y, 10,10);
+ctxx.fillStyle = "red";
+rect2(o, p, 10,10);
 }
+
+
 
 init();
 window.addEventListener('keydown',doKeyDown,true);
