@@ -38,6 +38,7 @@ function init() {
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
 img.src = "maze1.jpg";
+// img.src = "maze4.gif";
 ctxx = canvas.getContext("2d");
 return setInterval(draw, 10);
 }
@@ -97,6 +98,63 @@ break;
 }
 }
 
+function onKeyDown(evtt){
+switch (evtt.keyCode) {
+case 87:  /* W was pressed */
+if (p - dy > 0){
+p -= dy;
+// clear();
+checkcollision1();
+if (collision == 1){
+
+p += dy;
+collision = 0;
+}
+}
+
+break;
+case 83:  /* Down arrow was pressed */
+if (p + dy < HEIGHT ){
+p += dy;
+clear();
+checkcollision1();
+if (collision == 1){
+
+p -= dy;
+collision = 0;
+}
+}
+
+break;
+case 65:  /* Left arrow was pressed */
+if (o - dx > 0){
+o -= dx;
+clear();
+checkcollision1();
+if (collision == 1){
+
+o += dx;
+collision = 0;
+}
+}
+break;
+case 68:  /* Right arrow was pressed */
+if ((o + dx < WIDTH)){
+o += dx;
+clear();
+checkcollision1();
+if (collision == 1){
+
+o -= dx;
+collision = 0;
+
+}
+}
+break;
+}
+}
+
+
 function checkcollision() {
 var imgd = ctx.getImageData(x, y, 10, 10);
 var pix = imgd.data;
@@ -106,6 +164,17 @@ collision = 1;
 }
 }
 }
+
+function checkcollision1() {
+var imgd = ctxx.getImageData(o, p, 10, 10);
+var pix = imgd.data;
+for (var i = 0; n = pix.length, i < n; i += 4) {
+if (pix[i] == 0) {
+collision = 1;
+}
+}
+}
+
 
 function draw() {
 clear();
@@ -119,3 +188,11 @@ rect2(o, p, 10,10);
 
 init();
 window.addEventListener('keydown',doKeyDown,true);
+window.addEventListener('keydown',onKeyDown,true);
+//
+// $('body').keyDown(function(evt){
+//     var arrowKeys =
+// });
+// $('body').keyDown(function(evtt){
+//
+// });
