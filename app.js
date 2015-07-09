@@ -5,13 +5,13 @@ var ctxx;
 var test;
 var dx = 1;
 var dy = 1;
-var x = 15;
+var x = 10;
 var y = 250;
 var o = 700;
 var p = 270;
 var t = 191;
 var r = 237;
-var WIDTH = 470;
+var WIDTH = 1000;
 var HEIGHT = 550;
 var img = new Image();
 var collision = 0;
@@ -183,12 +183,12 @@ function checkcollision() {
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] < 2) {
+    if (pix[i] < 20) {
       collision = 1;
     }
-    // if (pix[i] === 0) {
-    //   collision = 1;
-    // }
+    if (pix[i] == 0) {
+      collision = 1;
+    }
   }
 }
 
@@ -196,12 +196,12 @@ function checkcollision1() {
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] <  2) {
+    if (pix[i] < 20) {
       collision = 1;
     }
-    // if (pix[i] === 0) {
-    //   collision = 1;
-    // }
+    if (pix[i] == 0) {
+      collision = 1;
+    }
   }
 }
 
@@ -209,7 +209,7 @@ function checkWinner(){
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 30) {
+    if (pix[i] == 192) {
       if (pendingWinner){
         alert('winner');
         pendingWinner = false;
@@ -222,7 +222,7 @@ function checkWinner1(){
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 30) {
+    if (pix[i] == 128) {
       if (pendingWinner1){
         alert('winner');
         pendingWinner1 = false;
