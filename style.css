@@ -1,5 +1,6 @@
 #canvas{
   margin-left: 200px;
+  opacity: .9;
 }
 #background{
   background-image: url("background2.jpg");
