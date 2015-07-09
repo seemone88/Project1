@@ -50,6 +50,7 @@ function clear() {
   ctxx.clearRect(0, 0, WIDTH, HEIGHT);
   ctxx.drawImage(img, 0, 0);
 
+
 }
 
 function init() {
@@ -60,7 +61,7 @@ function init() {
   ctxx = canvas.getContext("2d");
   test = canvas.getContext("2d");
   test1 = canvas.getContext("2d");
-  return setInterval(draw, 10);
+  return setInterval(draw, 5);
 }
 
 function doKeyDown(evt){
@@ -236,6 +237,8 @@ function draw() {
   test.fillRect(191,237,88,73);
   test1.fillStyle = "#228B22";
   test1.fillRect(678, 237,88,73);
+
+
 
   if (p1moveUp == true){
     y -= dy;
