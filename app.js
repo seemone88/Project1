@@ -5,9 +5,9 @@ var ctxx;
 var test;
 var dx = 1;
 var dy = 1;
-var x = 5;
-var y = 270;
-var o = 5;
+var x = 15;
+var y = 250;
+var o = 700;
 var p = 270;
 var t = 191;
 var r = 237;
@@ -61,7 +61,8 @@ function clear() {
 function init() {
   canvas = document.getElementById("canvas");
   ctx = canvas.getContext("2d");
-  img.src = "maze1_edited2.jpg";
+  // img.src = "maze1_edited2.jpg";
+  img.src = "maze44.jpg";
   ctxx = canvas.getContext("2d");
   test = canvas.getContext("2d");
   return setInterval(draw, 10);
@@ -182,12 +183,12 @@ function checkcollision() {
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 1) {
+    if (pix[i] < 2) {
       collision = 1;
     }
-    if (pix[i] === 0) {
-      collision = 1;
-    }
+    // if (pix[i] === 0) {
+    //   collision = 1;
+    // }
   }
 }
 
@@ -195,12 +196,12 @@ function checkcollision1() {
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  1) {
+    if (pix[i] <  2) {
       collision = 1;
     }
-    if (pix[i] === 0) {
-      collision = 1;
-    }
+    // if (pix[i] === 0) {
+    //   collision = 1;
+    // }
   }
 }
 
@@ -208,7 +209,7 @@ function checkWinner(){
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  25) {
+    if (pix[i] == 30) {
       if (pendingWinner){
         alert('winner');
         pendingWinner = false;
@@ -221,7 +222,7 @@ function checkWinner1(){
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  25) {
+    if (pix[i] == 30) {
       if (pendingWinner1){
         alert('winner');
         pendingWinner1 = false;
@@ -236,7 +237,7 @@ function draw() {
   rect(x, y, 10,10);
   ctxx.fillStyle = "silver";
   rect2(o, p, 10,10);
-  test.fillStyle = "#191970";
+  test.fillStyle = "#1E90FF";
   rect3(t,r,88,73);
   if (p1moveUp == true){
     y -= dy;
