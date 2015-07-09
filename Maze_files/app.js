@@ -5,12 +5,12 @@ var ctxx;
 var test;
 var dx = 1;
 var dy = 1;
-var x = 5;
-var y = 270;
-var o = 5;
-var p = 270;
+var x = 10;
+var y = 40;
+var o = 30;
+var p = 300;
 var t = 191;
-var r = 237;
+var r = 243;
 var WIDTH = 470;
 var HEIGHT = 550;
 var img = new Image();
@@ -23,16 +23,14 @@ var p2moveUp = false;
 var p2moveDown = false;
 var p2moveLeft = false;
 var p2moveRight = false;
-var pendingWinner = true;
-var pendingWinner1 = true;
 
 
-function rect3(t,r,w,h) {
-  test.beginPath();
-  test.rect(t,r,w,h);
-  test.closePath();
-  test.fill();
-}
+                                        function rect3(t,r,w,h) {
+                                          test.beginPath();
+                                          test.rect(t,r,w,h);
+                                          test.closePath();
+                                          test.fill();
+                                        }
 
 function rect2(o,p,w,h) {
   ctxx.beginPath();
@@ -74,7 +72,6 @@ function doKeyDown(evt){
       y -= dy;
       clear();
       checkcollision();
-      checkWinner();
     if (collision == 1){
       y += dy;
       collision = 0;
@@ -87,7 +84,6 @@ break;
       y += dy;
       clear();
       checkcollision();
-      checkWinner();
     if (collision == 1){
       y -= dy;
       collision = 0;
@@ -100,7 +96,6 @@ break;
       x -= dx;
       clear();
       checkcollision();
-      checkWinner();
     if (collision == 1){
       x += dx;
       collision = 0;
@@ -112,7 +107,6 @@ break;
       x += dx;
       clear();
       checkcollision();
-      checkWinner();
     if (collision == 1){
       x -= dx;
       collision = 0;
@@ -129,7 +123,6 @@ function onKeyDown(evtt){
         p -= dy;
         clear();
         checkcollision1();
-        checkWinner1();
       if (collision == 1){
         p += dy;
         collision = 0;
@@ -142,7 +135,6 @@ break;
       p += dy;
       clear();
       checkcollision1();
-      checkWinner1();
     if (collision == 1){
       p -= dy;
       collision = 0;
@@ -155,7 +147,6 @@ break;
       o -= dx;
       clear();
       checkcollision1();
-      checkWinner1();
     if (collision == 1){
       o += dx;
       collision = 0;
@@ -167,7 +158,6 @@ break;
       o += dx;
       clear();
       checkcollision1();
-      checkWinner1();
     if (collision == 1){
       o -= dx;
       collision = 0;
@@ -185,8 +175,11 @@ function checkcollision() {
     if (pix[i] == 1) {
       collision = 1;
     }
-    if (pix[i] === 0) {
+    if (pix[i] == 0) {
       collision = 1;
+    }
+    if (pix[i] == 192){
+      console.log('winner');
     }
   }
 }
@@ -195,40 +188,18 @@ function checkcollision1() {
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  1) {
+    if (pix[i] == 1) {
       collision = 1;
     }
-    if (pix[i] === 0) {
+    if (pix[i] == 0) {
       collision = 1;
+    }
+    if (pix[i] == 128) {
+      console.log('winner')
     }
   }
 }
 
-function checkWinner(){
-  var imgd = ctx.getImageData(x, y, 10, 10);
-  var pix = imgd.data;
-  for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  25) {
-      if (pendingWinner){
-        alert('winner');
-        pendingWinner = false;
-      }
-    }
-}
-}
-
-function checkWinner1(){
-  var imgd = ctxx.getImageData(o, p, 10, 10);
-  var pix = imgd.data;
-  for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] ==  25) {
-      if (pendingWinner1){
-        alert('winner');
-        pendingWinner1 = false;
-      }
-    }
-}
-}
 
 function draw() {
   clear();
@@ -236,12 +207,12 @@ function draw() {
   rect(x, y, 10,10);
   ctxx.fillStyle = "silver";
   rect2(o, p, 10,10);
-  test.fillStyle = "#191970";
-  rect3(t,r,88,73);
+  test.fillStyle = "#228B22";
+  rect3(t,r,87,71);
   if (p1moveUp == true){
     y -= dy;
     checkcollision();
-    checkWinner();
+
   if (collision == 1){
       y += dy;
       collision = 0;
@@ -250,7 +221,7 @@ function draw() {
   if (p1moveDown == true){
     y += dy;
     checkcollision();
-    checkWinner();
+
   if (collision == 1){
       y -= dy;
       collision = 0;
@@ -259,7 +230,7 @@ function draw() {
   if (p1moveLeft == true){
     x -= dx;
     checkcollision();
-    checkWinner();
+
   if (collision == 1){
       x += dx;
       collision = 0;
@@ -268,7 +239,7 @@ function draw() {
   if (p1moveRight == true){
     x += dx;
     checkcollision();
-    checkWinner();
+
   if (collision == 1){
       x -= dx;
       collision = 0;
@@ -278,7 +249,6 @@ function draw() {
   if (p2moveUp == true){
     p -= dy;
     checkcollision1();
-    checkWinner1();
   if (collision == 1){
       p += dy;
       collision = 0;
@@ -287,7 +257,6 @@ function draw() {
   if (p2moveDown == true){
     p += dy;
     checkcollision1();
-    checkWinner1();
   if (collision == 1){
       p -= dy;
       collision = 0;
@@ -296,7 +265,6 @@ function draw() {
   if (p2moveLeft == true){
     o -= dx;
     checkcollision1();
-    checkWinner1();
   if (collision == 1){
       o += dx;
       collision = 0;
@@ -305,7 +273,6 @@ function draw() {
   if (p2moveRight == true){
     o += dx;
     checkcollision1();
-    checkWinner1();
     if (collision == 1){
       o -= dx;
       collision = 0;
