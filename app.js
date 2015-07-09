@@ -3,14 +3,17 @@ var canvas;
 var ctx;
 var ctxx;
 var test;
+// var test1;
 var dx = 1;
 var dy = 1;
 var x = 10;
 var y = 250;
-var o = 700;
+var o = 945;
 var p = 270;
 var t = 191;
 var r = 237;
+// var n = 678;
+// var m = 237;
 var WIDTH = 1000;
 var HEIGHT = 550;
 var img = new Image();
@@ -26,6 +29,12 @@ var p2moveRight = false;
 var pendingWinner = true;
 var pendingWinner1 = true;
 
+// function rect4(n,m,w,h){
+//   test1.beginPath();
+//   test1.rect(n,m,w,h);
+//   test1.closePath();
+//   test1.fill();
+// }
 
 function rect3(t,r,w,h) {
   test.beginPath();
@@ -56,6 +65,8 @@ function clear() {
   ctxx.drawImage(img, 0, 0);
   test.clearRect(0, 0, WIDTH, HEIGHT);
   test.drawImage(img, 0, 0);
+  // test1.clearRect(0, 0, WIDTH, HEIGHT);
+  // test1.drawImage(img, 0, 0);
 }
 
 function init() {
@@ -65,6 +76,7 @@ function init() {
   img.src = "maze44.jpg";
   ctxx = canvas.getContext("2d");
   test = canvas.getContext("2d");
+  // test1 = canvas.getContext("2d");
   return setInterval(draw, 10);
 }
 
@@ -208,8 +220,8 @@ function checkcollision1() {
 function checkWinner(){
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
-  for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 192) {
+  for (var i = 0; n = pix.length, i < n; i += 3) {
+    if (pix[i] == 50) {
       if (pendingWinner){
         alert('winner');
         pendingWinner = false;
@@ -221,7 +233,7 @@ function checkWinner(){
 function checkWinner1(){
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
-  for (var i = 0; n = pix.length, i < n; i += 4) {
+  for (var i = 0; n = pix.length, i < n; i += 3) {
     if (pix[i] == 128) {
       if (pendingWinner1){
         alert('winner');
@@ -237,8 +249,11 @@ function draw() {
   rect(x, y, 10,10);
   ctxx.fillStyle = "silver";
   rect2(o, p, 10,10);
-  test.fillStyle = "#1E90FF";
+  test.fillStyle = "#32CD32";
   rect3(t,r,88,73);
+  // test1.fillStyle = "#1E90FF";
+  // rect4(n, m,88,73);
+
   if (p1moveUp == true){
     y -= dy;
     checkcollision();
