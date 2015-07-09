@@ -1,8 +1,7 @@
 #canvas{
-  margin-left: 300px;
+  margin-left: 250px;
   opacity: .9;
 }
 #background{
   background-image: url("background2.jpg");
-  margin-bottom: 200px;
 }
