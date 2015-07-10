@@ -11,7 +11,7 @@ var p = 268;
 var x = 945;
 var y = 270;
 var WIDTH = 1000;
-var HEIGHT = 550;
+var HEIGHT = 580;
 var img = new Image();
 var collision = 0;
 var p1moveUp = false;
@@ -24,6 +24,7 @@ var p2moveLeft = false;
 var p2moveRight = false;
 var pendingWinner = true;
 var pendingWinner1 = true;
+var theInterval = setInterval(draw, 5);
 
 
 
@@ -49,8 +50,10 @@ function clear() {
   ctx.drawImage(img, 0, 0);
   ctxx.clearRect(0, 0, WIDTH, HEIGHT);
   ctxx.drawImage(img, 0, 0);
-
-
+  test.clearRect(0, 0, WIDTH, HEIGHT);
+  test.drawImage(img, 0, 0);
+  test1.clearRect(0, 0, WIDTH, HEIGHT);
+  test1.drawImage(img, 0, 0);
 }
 
 function init() {
@@ -61,7 +64,7 @@ function init() {
   ctxx = canvas.getContext("2d");
   test = canvas.getContext("2d");
   test1 = canvas.getContext("2d");
-  return setInterval(draw, 5);
+  return theInterval;
 }
 
 function doKeyDown(evt){
@@ -205,9 +208,11 @@ function checkWinner(){
   var imgd = ctx.getImageData(x, y, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 34 && pix[i+1] == 139 && pix[i+2] == 34) {
+    if (pix[i] == 255& pix[i+1] == 255 && pix[i+2] == 0) {
       if (pendingWinner){
-        alert('winner');
+        clearInterval(theInterval);
+
+        img.src = "iwin.jpg"
         pendingWinner = false;
       }
     }
@@ -218,9 +223,11 @@ function checkWinner1(){
   var imgd = ctxx.getImageData(o, p, 10, 10);
   var pix = imgd.data;
   for (var i = 0; n = pix.length, i < n; i += 4) {
-    if (pix[i] == 34 && pix[i+1] == 139 && pix[i+2] == 34) {
+    if (pix[i] == 255 && pix[i+1] == 255 && pix[i+2] == 0) {
       if (pendingWinner1){
-        alert('winner');
+        clearInterval(theInterval);
+
+        img.src = "iwin.jpg"
         pendingWinner1 = false;
       }
     }
@@ -229,13 +236,13 @@ function checkWinner1(){
 
 function draw() {
   clear();
-  ctx.fillStyle = "purple";
+  ctx.fillStyle = "red";
   rect(x, y, 10,10);
-  ctxx.fillStyle = "silver";
+  ctxx.fillStyle = "orange";
   rect2(o, p, 10,10);
-  test.fillStyle = "#228B22";
+  test.fillStyle = "#FFFF00";
   test.fillRect(191,237,88,73);
-  test1.fillStyle = "#228B22";
+  test1.fillStyle = "#FFFF00";
   test1.fillRect(678, 237,88,73);
 
 

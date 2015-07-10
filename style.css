@@ -3,5 +3,6 @@
   opacity: .9;
 }
 #background{
-  background-image: url("background2.jpg");
+  background-image: url("calvin.jpg");
+  background-position: 0px -120px;
 }
