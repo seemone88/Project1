@@ -25,24 +25,30 @@ var p2moveRight = false;
 var pendingWinner = true;
 var pendingWinner1 = true;
 var theInterval = setInterval(draw, 5);
-
+var button = document.querySelector('#play');
+var hobbes = document.querySelector('#hobbes');
 
 
 
 
 function rect2(o,p,w,h) {
   ctxx.beginPath();
-  ctxx.rect(o,p,w,h);
+  // ctxx.rect(5,268,10,10);
+  ctxx.rect(o, p, w, h);
   ctxx.closePath();
   ctxx.fill();
+  return true;
+
 }
 
 
 function rect(x,y,w,h) {
   ctx.beginPath();
-  ctx.rect(x,y,w,h);
+  // ctx.rect(945,270,10,10);
+  ctx.rect(x, y, w, h);
   ctx.closePath();
   ctx.fill();
+  return ctxx.rect(5,268,10,10);
 }
 
 function clear() {
@@ -211,8 +217,7 @@ function checkWinner(){
     if (pix[i] == 255& pix[i+1] == 255 && pix[i+2] == 0) {
       if (pendingWinner){
         clearInterval(theInterval);
-
-        img.src = "iwin.jpg"
+        img.src = "calvinwin.gif";
         pendingWinner = false;
       }
     }
@@ -227,7 +232,7 @@ function checkWinner1(){
       if (pendingWinner1){
         clearInterval(theInterval);
 
-        img.src = "iwin.jpg"
+        img.src = "hobbes.gif";
         pendingWinner1 = false;
       }
     }
@@ -323,13 +328,26 @@ function draw() {
   }
 
 
+button.addEventListener('click',function(){
+window.location.reload(true);
+});
 
 
 init();
 window.addEventListener('keydown',doKeyDown,true);
 window.addEventListener('keydown',onKeyDown,true);
 
-
+// $('button').click(function(){
+//   img.src = "maze44.jpg";
+//
+//   clear();
+//   ctx.drawImage(img, 0, 0);
+//   ctxx.drawImage(img, 0, 0);
+//   rect();
+//   rect2();
+//   console.log(rect(945,270,10,10));
+//   setInterval(draw,10);
+// });
 
 $('body').keydown(function(e){
     var ek = e.keyCode;
